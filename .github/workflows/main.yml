@@ -16,6 +16,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Measure core
+      run: apt-get install stress-ng&&stress-ng -c 1 --metrics-brief --timeout 100
+      
     - name: Checkout
       uses: actions/checkout@v1
 
