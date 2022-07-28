@@ -17,7 +17,8 @@ jobs:
 
     steps:
     - name: Measure core
-      run: sudo apt-get install stress-ng&&sudo stress-ng -c 1 --metrics-brief --timeout 100
+      run: sudo apt-get install stress-ng&&sudo stress-ng --cpu 1 --cpu-method matrixprod --metrics-brief -t 60
+#      stress-ng -c 1 --metrics-brief --timeout 100
       
     - name: Checkout
       uses: actions/checkout@v1
