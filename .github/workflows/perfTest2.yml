@@ -23,4 +23,4 @@ jobs:
         width: 400
         height: 400
     - name: ls
-      run: ls&&pwd&&cut test.yml&&echo $TEST
+      run: ls&&pwd&&echo $TEST&&cat test.yml
