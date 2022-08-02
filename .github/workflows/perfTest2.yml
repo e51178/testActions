@@ -1,0 +1,13 @@
+name: Core 1
+
+on:
+  schedule:
+    - cron: "*/30 * * * *"
+jobs:
+  docker:
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 1 core
+      run: sudo apt-get install stress-ng&&sudo stress-ng --cpu 1 --cpu-method matrixprod --metrics-brief -t 60
