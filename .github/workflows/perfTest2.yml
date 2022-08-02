@@ -2,7 +2,7 @@ name: Core 1
 
 on:
   schedule:
-    - cron: "*/30 * * * *"
+    - cron: "*/10 * * * *"
 jobs:
   docker:
     timeout-minutes: 10
@@ -10,4 +10,15 @@ jobs:
 
     steps:
     - name: 1 core
-      run: sudo apt-get install stress-ng&&sudo stress-ng --cpu 1 --cpu-method matrixprod --metrics-brief -t 60
+      run: sudo apt-get install stress-ng&&sudo stress-ng --cpu 1 --yaml test.yml --cpu-method matrixprod --metrics-brief -t 60
+    - name: Create graph charts
+      uses: alexrogalskiy/github-action-charts@master
+      with:
+        file: './test.yml'
+        name: 'chart'
+        path: 'images'
+        extension: 'svg'
+        width: 400
+        height: 400
+    - name: ls
+      run: ls&&pwd
