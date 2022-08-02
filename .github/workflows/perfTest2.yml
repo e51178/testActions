@@ -8,7 +8,7 @@ jobs:
     timeout-minutes: 10
     runs-on: ubuntu-latest
     env:
-       TEST: 'test'
+       TEST: 'testEscho'
 
     steps:
     - name: 1 core
@@ -23,4 +23,4 @@ jobs:
         width: 400
         height: 400
     - name: ls
-      run: ls&&pwd&&cut test.yml&&echo$TEST
+      run: ls&&pwd&&cut test.yml&&echo $TEST
