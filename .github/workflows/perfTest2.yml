@@ -13,6 +13,11 @@ jobs:
     steps:
     - name: 1 core
       run: sudo apt-get install stress-ng&&sudo stress-ng --cpu 1 --yaml test.yml --cpu-method matrixprod --metrics-brief -t 60
+    - name: upload result
+    - uses: actions/upload-artifact@v3
+      with:
+        name: runPerf
+        path: ./test.yml
     - name: Create graph charts
       uses: alexrogalskiy/github-action-charts@master
       with:
