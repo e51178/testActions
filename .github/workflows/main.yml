@@ -17,6 +17,4 @@ jobs:
 
     steps:
     - name: test  shell
-      run:  echo "TEST_VAR=$(ls -la)">>$GITHUB_ENV
-    - name: Test echo
-      run: echo ${{ env.TEST_VAR }}
+      run:  echo "TEST_VAR=`ls -la`">>$GITHUB_ENV&&ls-la&&echo $TEST_VAR
