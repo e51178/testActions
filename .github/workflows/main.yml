@@ -19,6 +19,6 @@ jobs:
 
     steps:
     - name: test  shell
-      run:  echo "TEST_VAR=`ls -la`">$RES&&RES=`ls -la`
+      run:  echo "TEST_VAR=`ls -la`">$RES&&echo "TST=`ls -la`" >> $GITHUB_ENV
     - name: test  echo
       run:  declare -p&&echo $RES
