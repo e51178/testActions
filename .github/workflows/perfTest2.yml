@@ -26,6 +26,13 @@ jobs:
         name: test-report-date-${{ steps.time.outputs.time }}-run-${{ github.run_number }}
         path: wiki/
   
+  
+    - name: Step 3 - Use the Upload Artifact GitHub Action
+      uses: actions/upload-artifact@v2
+      with: 
+          name: assets-for-download
+          path: wiki
+          
     - name: Upload Documentation to Wiki
       uses: SwiftDocOrg/github-wiki-publish-action@v1
       with:
