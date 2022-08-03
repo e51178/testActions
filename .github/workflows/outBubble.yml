@@ -1,5 +1,4 @@
-name: Perf Test 1 core 2 core upload
-
+name: Perf Test fin
 on:
   schedule:
     - cron: "*/10 * * * *"
