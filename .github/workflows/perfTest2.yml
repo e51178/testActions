@@ -14,7 +14,7 @@ jobs:
     - name: 1 core
       run: sudo apt-get install stress-ng&&sudo stress-ng --cpu 1 --yaml test.yml --cpu-method matrixprod --metrics-brief -t 60
     - name: cp report
-      run: mkdir wiki&&mv test.yml wiki/cpu_`date +"%d-%m-%Y-%H-%M"`
+      run: mkdir wiki&&cp test.yml wiki/cpu_`date +"%d-%m-%Y-%H-%M"`
     - name: Upload Documentation to Wiki
       uses: SwiftDocOrg/github-wiki-publish-action@v1
       with:
@@ -22,14 +22,15 @@ jobs:
       env:
           GH_PERSONAL_ACCESS_TOKEN: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
         
-    - name: Create graph charts
-      uses: alexrogalskiy/github-action-charts@master
-      with:
-        file: './test.yml'
-        name: 'chart'
-        path: 'images'
-        extension: 'svg'
-        width: 400
-        height: 400
+    - name: Push Wiki Changes
+      uses: Andrew-Chen-Wang/github-wiki-action@v3
+      env:
+        # Make sure you have that / at the end. We use rsync 
+        # WIKI_DIR's default is wiki/
+        WIKI_DIR: wiki/
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GH_MAIL: ${{ secrets.YOUR_EMAIL }}
+        GH_NAME: ${{ github.repository_owner }}
+        EXCLUDED_FILES: "a/ b.md"
     - name: ls
-      run: ls&&pwd&&echo $TEST&&cat test.yml
+      run: ls&&pwd&&echo $TEST&&declare -p&&cat test.yml
