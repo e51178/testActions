@@ -4,7 +4,7 @@ on:
   schedule:
     - cron: "*/10 * * * *"
 jobs:
-  1coreTest:
+  coreTest:
     timeout-minutes: 10
     runs-on: ubuntu-latest
     env:
@@ -13,8 +13,19 @@ jobs:
     steps:
     - name: 1 core
       run: sudo apt-get install stress-ng&&sudo stress-ng --cpu 1 --yaml test.yml --cpu-method matrixprod --metrics-brief -t 60
-    - name: cp report
-      run: mkdir wiki&&cp test.yml wiki/cpu_`date +"%d-%m-%Y-%H-%M"`
+    
+    - name: 2 core
+      run: sudo apt-get install stress-ng&&sudo stress-ng --cpu 2 --yaml test2.yml --cpu-method matrixprod --metrics-brief -t 60
+
+    - name: cp-report
+      run: mkdir wiki&&cp test.yml wiki/cpu_`date +"%d-%m-%Y-%H-%M"`&&cp test2.yml wiki/cpu_`date +"%d-%m-%Y-%H-%M"`
+    - name: Upload report in artifacts
+      uses: actions/upload-artifact@v3.1.0
+      if:   always()
+      with:
+        name: test-report-date-${{ steps.time.outputs.time }}-run-${{ github.run_number }}
+        path: wiki/*.yml
+  
     - name: Upload Documentation to Wiki
       uses: SwiftDocOrg/github-wiki-publish-action@v1
       with:
