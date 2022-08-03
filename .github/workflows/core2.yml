@@ -11,8 +11,12 @@ jobs:
        TEST: 'testEscho'
 
     steps:
+    - name: echo date core 1 before 
+      run: date
     - name: core 1
       run: sudo apt-get install stress-ng&&sudo stress-ng --cpu 1 --yaml core1.yml --cpu-method matrixprod --metrics-brief -t 60
+    - name: echo date core 1 after
+      run: date
     
   core2:
     timeout-minutes: 10
@@ -21,5 +25,9 @@ jobs:
        TEST: 'testEscho'
 
     steps:
+    - name: echo date core 2 before 
+      run: date
     - name: core 2
       run: sudo apt-get install stress-ng&&sudo stress-ng --cpu 1 --yaml core2.yml --cpu-method matrixprod --metrics-brief -t 60
+    - name: echo date core 2 after 
+      run: date
