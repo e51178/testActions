@@ -19,6 +19,6 @@ jobs:
 
     steps:
     - name: test  shell
-      run:  echo "TEST_VAR=`ls -la`">$RES
+      run:  echo "TEST_VAR=`ls -la`">$RES&&$RES=`ls -la`
     - name: test  echo
-      run:  echo $RES
+      run:  declare -p&&echo $RES
