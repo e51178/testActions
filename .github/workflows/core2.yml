@@ -1,0 +1,25 @@
+name: Core 1
+
+on:
+  schedule:
+    - cron: "*/9 * * * *"
+jobs:
+  core1:
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+    env:
+       TEST: 'testEscho'
+
+    steps:
+    - name: core 1
+      run: sudo apt-get install stress-ng&&sudo stress-ng --cpu 1 --yaml core1.yml --cpu-method matrixprod --metrics-brief -t 60
+    
+  core2:
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+    env:
+       TEST: 'testEscho'
+
+    steps:
+    - name: core 2
+      run: sudo apt-get install stress-ng&&sudo stress-ng --cpu 1 --yaml core2.yml --cpu-method matrixprod --metrics-brief -t 60
