@@ -11,17 +11,12 @@ on:
     - main
 
 jobs:
-  docker:
+  testJob:
     timeout-minutes: 10
     runs-on: ubuntu-latest
 
     steps:
-    - name: Measure core
-      run: sudo apt-get install stress-ng&&sudo stress-ng --cpu 1 --cpu-method matrixprod --metrics-brief -t 60
-#      stress-ng -c 1 --metrics-brief --timeout 100
-      
-    - name: Checkout
-      uses: actions/checkout@v1
-
-    - name: Start containers
-      run: docker-compose -f "docker-compose.yml" up -d --build
+    - name: test  shell
+      run:  echo "TEST_VAR=$(ls -la)">>$GITHUB_ENV
+    - name: Test echo
+      run: echo ${{ env.TEST_VAR }}
