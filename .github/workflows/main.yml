@@ -14,7 +14,11 @@ jobs:
   testJob:
     timeout-minutes: 10
     runs-on: ubuntu-latest
+    env:
+       RES: 'empty_result'
 
     steps:
     - name: test  shell
-      run:  echo "TEST_VAR=`ls -la`">>$GITHUB_ENV&&ls-la&&echo $TEST_VAR
+      run:  echo "TEST_VAR=`ls -la`">$RES
+    - name: test  echo
+      run:  echo $RES
