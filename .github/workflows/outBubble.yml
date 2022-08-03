@@ -11,7 +11,7 @@ jobs:
 
     steps:
     - name: step 1  run perf on 1 core
-      run:  echo "start test"&&sudo apt-get install stress-ng&&sudo stress-ng --cpu 1 --yaml test.yml --cpu-method matrixprod --metrics-brief -t 60&&RES=`grep real-time test.yml | sed 's/[^0-9,/.]*//g'|cut -d . -f 1`&&mkdir wiki&&cp test.yml wiki/cpu_`date +"%d-%m-%Y-%H-%M"`
+      run:  echo "start test"&&sudo apt-get install stress-ng&&sudo stress-ng --cpu 1 --yaml test.yml --cpu-method matrixprod --metrics-brief -t 60&&RES=`grep real-time test.yml | sed 's/[^0-9,/.]*//g'|cut -d . -f 1`&&mkdir wiki&&cp test.yml wiki/cpu_`date +"%d-%m-%Y-%H-%M"`&&echo $RES
     - name: Step 2 - Upload perf result
       uses: actions/upload-artifact@v2
       with: 
