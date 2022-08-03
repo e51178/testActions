@@ -4,7 +4,7 @@ on:
   schedule:
     - cron: "*/10 * * * *"
 jobs:
-  docker:
+  1coreTest:
     timeout-minutes: 10
     runs-on: ubuntu-latest
     env:
