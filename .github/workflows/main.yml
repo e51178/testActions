@@ -16,9 +16,16 @@ jobs:
     runs-on: ubuntu-latest
     env:
        RES: 'empty_result'
-
     steps:
-    - name: test  shell
-      run:  echo "TEST_VAR=`ls -la`">$RES&&echo "TST=`ls -la`" >> $GITHUB_ENV
+    - name: Set the value
+      id: step_one
+      run: |
+        echo "action_state=yellow" >> $GITHUB_ENV
+    - name: Use the value
+      id: step_two
+      run: |
+       echo "${{ env.action_state }}" # This will output 'yellow'
+#    - name: test  shell
+#      run:  echo "TEST_VAR=`ls -la`">$RES&&echo "TST=`ls -la`" >> $GITHUB_ENV
     - name: test  echo
       run:  declare -p&&echo $RES
