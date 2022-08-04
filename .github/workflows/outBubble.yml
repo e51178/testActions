@@ -13,7 +13,7 @@ jobs:
         sudo apt-get install stress-ng&&sudo stress-ng --cpu 1 --yaml test.yml --cpu-method matrixprod --metrics-brief -t 60\
         &&mkdir result&&cp test.yml result/cpu_`date +"%d-%m-%Y-%H-%M"`\
         &&grep real-time test.yml | sed 's/[^0-9,/.]*//g'|cut -d . -f 1 >result.file\
-        &&echo "-"&&date +"%d-%m-%Y-%H-%M">>result.file\&&cata result.file
+        &&echo "-"&&date +"%d-%m-%Y-%H-%M">>result.file\&&cat result.file
         &&echo "action_result= '`cat result.file`'" >> $GITHUB_ENV
 
     - name: Step 2 - Upload perf result
