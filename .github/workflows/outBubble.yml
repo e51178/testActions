@@ -18,5 +18,5 @@ jobs:
     - name: Step 2 - Upload perf result
       uses: actions/upload-artifact@v2
       with: 
-          name: perf-res-${{ env.action_result }}
+          name: perf-res-${{ env.action_result }}-`date +"%d-%m-%Y-%H-%M"`
           path: result
