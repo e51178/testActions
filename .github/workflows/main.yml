@@ -24,7 +24,7 @@ jobs:
     - name: echo to file 
       id: step_one_1
       run: |
-        echo "action_state= test" >test.file&&cat test.file&&echo "action_state= `cat test.file`" >> $GITHUB_ENV
+        echo "fileData" >test.file&&cat test.file&&echo "action_state= `cat test.file`" >> $GITHUB_ENV
 
     - name: Use the value
       id: step_two
