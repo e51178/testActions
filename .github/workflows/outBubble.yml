@@ -17,3 +17,7 @@ jobs:
       with: 
           name: perf-res-$RES
           path: wiki
+    
+    - name: Adding markdown
+      run: echo ‘### Hello world! :rocket: `cat test.yml`’ >> $GITHUB_STEP_SUMMARY
+
