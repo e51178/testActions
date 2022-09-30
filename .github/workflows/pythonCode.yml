@@ -13,8 +13,13 @@ jobs:
     steps:
      - name: Display the path
        run: |
-        import os
-        import requests
-        print(os.environ['PATH'])
-        print("!!!!!!!!!!!!!!!!!!!!!")
+         import Requests
+         print("Start invoke other task")
+         gitHubToken = "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"
+         session = requests.Session()
+         session.headers['Authorization'] = 'token %s' % gitHubToken
+         url = "https://api.github.com/repos/btech-devcenter/gpfgba-e2e-tests/dispatches"
+         data = {"event_type": "e2e-trigger"}
+         res = session.post(url, json={"event_type": "e2e-trigger"})
+         print( res.content )
        shell: python
