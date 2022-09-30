@@ -17,7 +17,7 @@ jobs:
          import os
          session = requests.Session()
          for item, value in os.environ.items():
-         print('{}: {}'.format(item, value))
+             print('{}: {}'.format(item, value))
          token = os.environ['GITHUB_TOKEN']
          print(f'!!!!!!!!!!!!!!!TOKEN - {token}')
          session.headers['Authorization'] = f'token {os.environ['GITHUB_TOKEN']}'
