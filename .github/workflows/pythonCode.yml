@@ -18,8 +18,8 @@ jobs:
        run: |
          import requests
          import os
-         mp = os.environ['TEST_PARAM']
-         print(f"Start invoke other task {mp}")
+         for item, value in os.environ.items():
+            print('{}: {}'.format(item, value))
          session = requests.Session()
          session.headers['Authorization'] = 'token ${GITHUB_TOKEN}'
          url = "https://api.github.com/repos/btech-devcenter/gpfgba-e2e-tests/dispatches"
