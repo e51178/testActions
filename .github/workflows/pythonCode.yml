@@ -16,10 +16,7 @@ jobs:
          import requests
          import os
          session = requests.Session()
-         for item, value in os.environ.items():
-             print('{}: {}'.format(item, value))
          token = os.environ['GITHUB_TOKEN']
-         print(f'!!!!!!!!!!!!!!!TOKEN - {token}')
          session.headers['Authorization'] = f'token {token}'
          url = "https://api.github.com/repos/btech-devcenter/gpfgba-e2e-tests/dispatches"
          res = session.post(url, json={"event_type": "e2e-trigger"})
