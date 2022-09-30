@@ -11,22 +11,8 @@ jobs:
   python:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
-      - uses: actions/setup-python@v2
-        with:
-          python-version: 3.1 #install the python needed
-          run: |
-            python -m pip install --upgrade pip
-            pip install requests
-      - uses: jannekem/run-python-script-action@v1
-        with:
-          script: |
-            import requests
-            gitHubToken = "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"
-            session = requests.Session()
-            session.headers['Authorization'] = 'token %s' % gitHubToken
-            url = "https://api.github.com/repos/btech-devcenter/gpfgba-e2e-tests/dispatches"
-            data = {"event_type": "e2e-trigger"}
-            res = session.post(url, json={"event_type": "e2e-trigger"})
-            print res.content 
+     - name: Display the path
+       run: |
+        import os
+        print(os.environ['PATH'])
+       shell: python {0}
