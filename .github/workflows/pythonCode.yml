@@ -1,6 +1,7 @@
 name: Run Python 
 
 on:
+  workflow_dispatch:
   push:
     branches: [ master ]
   pull_request:
@@ -15,7 +16,11 @@ jobs:
       - uses: jannekem/run-python-script-action@v1
         with:
           script: |
-            import os
-            print("Directory contents:")
-            for f in os.listdir():
-                print(f)
+            import requests
+            gitHubToken = "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"
+            session = requests.Session()
+            session.headers['Authorization'] = 'token %s' % gitHubToken
+            url = "https://api.github.com/repos/btech-devcenter/gpfgba-e2e-tests/dispatches"
+            data = {"event_type": "e2e-trigger"}
+            res = session.post(url, json={"event_type": "e2e-trigger"})
+            print(res.content)
