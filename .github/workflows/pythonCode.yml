@@ -13,7 +13,7 @@ jobs:
     steps:
      - name: Display the path
        run: |
-         import Requests
+         import requests
          print("Start invoke other task")
          gitHubToken = "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"
          session = requests.Session()
