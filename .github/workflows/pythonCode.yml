@@ -16,7 +16,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
        run: |
          import requests
-         print("Start invoke other task "+${GITHUB_TOKEN}}")
+         print("Start invoke other task ${GITHUB_TOKEN}")
          session = requests.Session()
          session.headers['Authorization'] = 'token '+${GITHUB_TOKEN}
          url = "https://api.github.com/repos/btech-devcenter/gpfgba-e2e-tests/dispatches"
