@@ -14,6 +14,7 @@ jobs:
      - name: Display the path
        run: |
         import os
+        import requests
         print(os.environ['PATH'])
         print("!!!!!!!!!!!!!!!!!!!!!")
        shell: python
