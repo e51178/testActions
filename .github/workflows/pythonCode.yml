@@ -18,7 +18,7 @@ jobs:
          import requests
          print("Start invoke other task ${GITHUB_TOKEN}")
          session = requests.Session()
-         session.headers['Authorization'] = 'token '+${GITHUB_TOKEN}
+         session.headers['Authorization'] = 'token ${GITHUB_TOKEN}'
          url = "https://api.github.com/repos/btech-devcenter/gpfgba-e2e-tests/dispatches"
          data = {"event_type": "e2e-trigger"}
          res = session.post(url, json={"event_type": "e2e-trigger"})
