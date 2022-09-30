@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-python@v3
+      - uses: actions/setup-python@v2
       - uses: jannekem/run-python-script-action@v1
         with:
           script: |
@@ -23,4 +23,4 @@ jobs:
             url = "https://api.github.com/repos/btech-devcenter/gpfgba-e2e-tests/dispatches"
             data = {"event_type": "e2e-trigger"}
             res = session.post(url, json={"event_type": "e2e-trigger"})
-            print(res.content)
+            print res.content 
