@@ -17,6 +17,7 @@ jobs:
         TEST_PARAM: testValue
        run: |
          import requests
+         import os
          mp = os.environ['TEST_PARAM']
          print(f"Start invoke other task {mp}")
          session = requests.Session()
