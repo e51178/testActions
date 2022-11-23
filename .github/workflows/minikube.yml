@@ -11,7 +11,7 @@ jobs:
     - name: Start minikube
       uses: medyagh/setup-minikube@master
     - name: Try the cluster !
-      run: kubectl get pods -A
+      run: kubectl get pods -A&&minikube addons enable ingress&&eval $(minikube -p minikube docker-env)&&echo "$(minikube ip) gban-e2e-host" |sudo tee -a /etc/hosts
     - name: try helm
       run: helm status
     - name: Build image
