@@ -12,6 +12,8 @@ jobs:
       uses: medyagh/setup-minikube@master
     - name: Try the cluster !
       run: kubectl get pods -A
+    - name: try helm
+      run: helm status
     - name: Build image
       run: |
         export SHELL=/bin/bash
