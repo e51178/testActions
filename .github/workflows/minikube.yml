@@ -11,7 +11,13 @@ jobs:
     - name: Start minikube
       uses: medyagh/setup-minikube@master
     - name: Try the cluster !
-      run: kubectl get pods -A&&kubectl create ns e2e&&minikube addons enable ingress&&eval $(minikube -p minikube docker-env)&&echo "$(minikube ip) gban-e2e-host" |sudo tee -a /etc/hosts
+      run: |
+         kubectl create ns e2e&&minikube addons enable ingress&&eval $(minikube -p minikube docker-env) \
+         &&echo "$(minikube ip) gban-e2e-host" |sudo tee -a /etc/hosts&& \
+         kubectl create secret docker-registry gban-registry --docker-server=ghcr.io/btech-devcenter \ 
+         --docker-username=$GITHUB_ACTOR --docker-password=$GITHUB_TOKEN --docker-email=test@none.none -n e2e&&\
+         echo $GITHUB_TOKEN | docker login -u $GITHUB_ACTOR ghcr.io --password-stdin&& \
+         docker pull ghcr.io/btech-devcenter/gban-config-server:latest
     - name: try helm
       run: helm status gban-e2e -n e2e
     - name: Build image
